@@ -1,0 +1,14 @@
+<main class="container py-4">
+  <section class="card shadow-sm mx-auto weather-card">
+    <div class="card-body p-4">
+      <h1 class="h3">Pogoda: {{ city.name }}</h1>
+      <p>Temperatura: {{ weather().temperature }} °C</p>
+      <p>Odczuwalna: {{ weather().apparentTemperature }} °C</p>
+      <p>Wilgotność: {{ weather().humidity }} %</p>
+      <p>Ciśnienie: {{ weather().pressure }} hPa</p>
+      <p class="text-secondary small">{{ weather().observedAt }}</p>
+      <button class="btn btn-primary" type="button"
+        (click)="refreshData()">Odśwież</button>
+    </div>
+  </section>
+</main>
