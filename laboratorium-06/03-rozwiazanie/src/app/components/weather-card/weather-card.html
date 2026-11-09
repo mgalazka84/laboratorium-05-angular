@@ -1,0 +1,30 @@
+<article class="card h-100 shadow-sm">
+  <div class="card-body">
+    <h2 class="h4">{{ city().name }}</h2>
+    @if (loading()) {
+      <p role="status">Pobieranie danych...</p>
+    }
+    @if (error(); as message) {
+      <p class="alert alert-danger" role="alert">{{ message }}</p>
+    }
+    @if (weather(); as w) {
+      <p>Temperatura: <strong>{{ w.temperature }} °C</strong></p>
+      <p>Odczuwalna: {{ w.apparentTemperature }} °C</p>
+      <p>Wilgotność: {{ w.humidity }} %</p>
+      <p>Ciśnienie: {{ w.pressure }} hPa</p>
+      <p class="small text-secondary">
+        Czas danych (Europe/Warsaw): {{ w.observedAt }}
+      </p>
+    }
+    @if (lastRequestedAt(); as time) {
+      <p class="small text-secondary">
+        Wysłano (czas przeglądarki):
+        {{ time | date:'dd.MM.yyyy HH:mm:ss' }}
+      </p>
+    }
+    <button type="button" class="btn btn-primary"
+      [disabled]="loading()" (click)="requestRefresh()">
+      {{ loading() ? 'Pobieranie...' : 'Odśwież' }}
+    </button>
+  </div>
+</article>

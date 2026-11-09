@@ -1,85 +1,89 @@
-# Laboratorium 5 - Angular standalone: aplikacja pogodowa
+# Laboratoria 5 i 6 - Angular standalone
 
-Kod do zajęć w Visual Studio Code. Dwa kompletne projekty pozwalają przejść
-od danych lokalnych do pobierania pogody z API.
+Kod dla studentów do pracy w Visual Studio Code.
 
-## Pobranie dla studentów
+## Pobranie i wybór projektu
 
-Kliknij zielony przycisk **Code**, a następnie **Download ZIP**.
-Wypakuj archiwum i otwórz w VS Code jeden z podfolderów:
+Kliknij **Code → Download ZIP**, wypakuj archiwum i wybierz folder z tabeli.
 
-| Folder | Zawartość |
-| --- | --- |
-| `01-lokalny` | Dane przykładowe, sygnały i odświeżanie przyciskiem |
-| `02-api` | Open-Meteo, serwis HTTP, stan ładowania i obsługa błędów |
-| `Rozwiazanie_wiatr.md` | Rozwiązanie zadania z prędkością wiatru |
+| Laboratorium | Folder projektu | Zawartość |
+| --- | --- | --- |
+| 5 | [01-lokalny](01-lokalny) | Dane przykładowe, sygnały i odświeżanie |
+| 5 | [02-api](02-api) | Pogoda z Open-Meteo, ładowanie i obsługa błędów |
+| 6 | [laboratorium-06/01-lokalny](laboratorium-06/01-lokalny) | Komunikacja rodzic-dziecko, input() i output() bez API |
+| 6 | [laboratorium-06/02-api](laboratorium-06/02-api) | Kontener i karty miast, niezależne żądania HTTP |
+| 6 | [laboratorium-06/03-rozwiazanie](laboratorium-06/03-rozwiazanie) | Rozwiązanie: trzy miasta i czas wysłania zapytania |
 
-## Szybki start
+## Uruchomienie
 
-W terminalu w wybranym katalogu aplikacji (tym z `package.json`):
+W terminalu **wybranego projektu**, czyli w folderze z `package.json`:
 
 ```sh
 npm ci
 npm start
 ```
 
-Otwórz **http://localhost:4200**. Zatrzymanie serwera: **Ctrl+C**.
-Zależności muszą zostać zainstalowane oddzielnie dla każdego projektu.
-Uruchamiaj jeden projekt na porcie 4200. Nie trzeba instalować Angular CLI globalnie.
+Otwórz http://localhost:4200. Zatrzymanie serwera: **Ctrl+C**.
+Każdy projekt wymaga osobnej instalacji zależności. Uruchamiaj jeden projekt
+na porcie 4200. Projekty są kompletne; nie wykonuj ponownie `ng new`.
+Globalna instalacja Angular CLI nie jest potrzebna.
 
-## Wersje środowiska
+Przykład dla laboratorium 6, po wejściu do głównego katalogu repozytorium:
 
-Stan wersji sprawdzony 30.10.2026: Angular 22.2.4, CLI 22.2.5,
-TypeScript 6.0.3, RxJS 7.8.2, Bootstrap 5.3.8. Node.js 24 LTS >=24.15.0.
-Weryfikacja wykonana na Node.js 24.22.1 i npm 11.9.0.
+```sh
+cd laboratorium-06/02-api
+npm ci
+npm start
+```
 
-## Uruchomienie w Visual Studio Code
+## Laboratorium 5 - aplikacja pogodowa
 
-1. Otwórz wybrany folder projektu: `01-lokalny` lub `02-api`.
-2. W terminalu w tym folderze wykonaj `npm ci`.
-3. Uruchom `npm start`, otwórz http://localhost:4200.
-4. Zatrzymanie serwera: Ctrl+C. Uruchamiaj jeden projekt na porcie 4200.
+Rozpocznij od `01-lokalny`, a następnie przejdź do `02-api`.
+Zadanie polega na dodaniu prędkości wiatru. Wskazówki i rozwiązanie:
+[Rozwiazanie_wiatr.md](Rozwiazanie_wiatr.md).
 
-Projekty są kompletne: nie wymagają `ng new` ani generowania komponentów.
-`01-lokalny` zawiera wariant danych przykładowych i losowania przyciskiem.
-`02-api` zawiera wariant z HTTP, ładowaniem, błędem i ponowieniem.
-Model, serwis HTTP i konfiguracja są wspólne; w etapie lokalnym serwis nie
-jest wywoływany przez komponent. Aby przejść samodzielnie między etapami,
-zastąp dwa pliki `components/weather/weather.ts` i `weather.html` kodem z PDF.
+Wersje sprawdzone 30.10.2026: Angular 22.2.4 i Angular CLI 22.2.5.
 
-## Praca na zajęciach
+## Laboratorium 6 - komunikacja między komponentami
 
-Kroki i kompletne przykłady znajdują się w instrukcji PDF. Zadanie końcowe:
-dodaj `wind_speed_10m` do jednego żądania, zmapuj na `windSpeed` i pokaż km/h.
-Najpierw spróbuj samodzielnie; plik `Rozwiazanie_wiatr.md` zawiera wskazówki
-i komplet wymaganych zmian. Routing i własny backend nie są potrzebne.
+Szczegółowy opis: [laboratorium-06/README.md](laboratorium-06/README.md).
 
-## Kontrola
+Rodzic `WeatherDashboard` przechowuje stan. Dziecko `WeatherCard` otrzymuje
+wejścia i emituje identyfikator miasta przez `output<string>()`.
+Odświeżenie jednej karty dotyczy tylko jej miasta.
 
-`npm run build` sprawdza kompilację i szablony. Zachowanie sprawdź w przeglądarce:
-udane pobranie, ładowanie przy wolnej sieci, błąd po odłączeniu sieci i ponowienie.
-Przykład API przed rozbudową ma również testy: `npm test -- --watch=false`.
-W `02-api` to sześć testów serwisu i widoku. Po zmianie kontraktu w zadaniu
-zaktualizuj również dane testowe i listę oczekiwanych parametrów.
+Zadania: dodanie trzeciego miasta i czasu rozpoczęcia ostatniego żądania.
+Po własnej próbie porównaj `03-rozwiazanie`.
 
-`package-lock.json` zachowuje sprawdzone wersje; instalacja: `npm ci`.
-Nie uruchamiaj komponentu poleceniem `node weather.ts`; przetwarza go Angular CLI.
-Nie dołączaj node_modules, dist ani .angular do oddawanej pracy.
+Wersje sprawdzone 09.11.2026: Angular 22.2.5 i Angular CLI 22.2.6.
 
-## API i dokumentacja
+## Środowisko i kontrola
 
-Open-Meteo: https://open-meteo.com/en/docs
-Publiczny endpoint w tym przykładzie nie wymaga konta ani klucza.
-Dane modelowe mogą nie zmienić się po kolejnym żądaniu. Informacja o źródle
-i licencji CC BY 4.0 znajduje się w szablonie.
-Angular: https://angular.dev/guide/components
-Wersje: https://angular.dev/reference/versions
-Sygnały: https://angular.dev/guide/signals
-HTTP: https://angular.dev/guide/http/making-requests
-Aktualizacja: https://angular.dev/update-guide
-Bootstrap: https://getbootstrap.com/docs/5.3/getting-started/introduction/
+Node.js 24 LTS >=24.15.0, TypeScript 6.0.3, RxJS 7.8.2, Bootstrap 5.3.8.
+`package-lock.json` zachowuje dokładne wersje; instaluj przez `npm ci`.
 
+```sh
+npm run build
+npm test -- --watch=false
+```
+
+W `02-api` laboratorium 5 jest 6 testów, a w `laboratorium-06/02-api` 10 testów.
+Testy HTTP używają backendu testowego i nie wymagają połączenia z API.
+Zachowanie w przeglądarce sprawdź dodatkowo: pobieranie, blokadę przycisku,
+błąd sieci i ponowienie. Nie uruchamiaj komponentów przez `node plik.ts`.
+Do oddawanej pracy nie dołączaj `node_modules`, `dist` ani `.angular`.
+
+## Źródło danych i dokumentacja
+
+Przykłady korzystają z [Open-Meteo](https://open-meteo.com/en/docs), bez klucza API.
+Są to dane modelowe; kolejne żądanie może zwrócić te same wartości.
+Informacja o źródle i licencji CC BY 4.0 znajduje się w szablonach.
+
+- [Komponenty Angular](https://angular.dev/guide/components)
+- [Wejścia input()](https://angular.dev/guide/components/inputs)
+- [Zdarzenia output()](https://angular.dev/guide/components/outputs)
+- [Zgodność wersji](https://angular.dev/reference/versions)
 
 ## Licencja
 
-Kod udostępniono na licencji MIT.
+Kod udostępniono na licencji [MIT](LICENSE).

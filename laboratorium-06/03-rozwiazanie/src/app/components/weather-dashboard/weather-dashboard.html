@@ -1,0 +1,21 @@
+<main class="container py-4">
+  <h1 class="h2 mb-4">Pogoda w kilku miastach</h1>
+  <div class="row g-3">
+    @for (card of cards(); track card.city.id) {
+      <div class="col-12 col-md-6 col-xl-4">
+        <app-weather-card
+          [city]="card.city"
+          [weather]="card.weather"
+          [loading]="card.loading"
+          [error]="card.error"
+          [lastRequestedAt]="card.lastRequestedAt"
+          (refreshRequested)="refreshCity($event)" />
+      </div>
+    }
+  </div>
+  <p class="small text-secondary mt-4">
+    Dane modelowe:
+    <a href="https://open-meteo.com/" target="_blank"
+      rel="noopener noreferrer">Open-Meteo.com</a> (CC BY 4.0)
+  </p>
+</main>
