@@ -1,0 +1,20 @@
+<header class="bg-white border-bottom">
+  <nav class="container d-flex flex-wrap gap-3 align-items-center py-3"
+    aria-label="Główna nawigacja">
+    <strong>Pogoda - laboratorium 7</strong>
+    <a routerLink="/weather" routerLinkActive="fw-bold"
+      ariaCurrentWhenActive="page">Pogoda</a>
+    <a routerLink="/login" routerLinkActive="fw-bold"
+      ariaCurrentWhenActive="page">Logowanie demo</a>
+    <a routerLink="/about" routerLinkActive="fw-bold"
+      ariaCurrentWhenActive="page">O aplikacji</a>
+    @if (session.isActive()) {
+      <button type="button" class="btn btn-outline-danger ms-auto"
+        (click)="logout()">Wyloguj z demo</button>
+    }
+  </nav>
+</header>
+<main><router-outlet /></main>
+<footer class="container py-3 small text-secondary">
+  Tryb demonstracyjny: guard steruje nawigacją w przeglądarce.
+</footer>

@@ -1,4 +1,4 @@
-# Laboratoria 5 i 6 - Angular standalone
+# Laboratoria 5, 6 i 7 - Angular standalone
 
 Kod dla studentów do pracy w Visual Studio Code.
 
@@ -13,6 +13,9 @@ Kliknij **Code → Download ZIP**, wypakuj archiwum i wybierz folder z tabeli.
 | 6 | [laboratorium-06/01-lokalny](laboratorium-06/01-lokalny) | Komunikacja rodzic-dziecko, input() i output() bez API |
 | 6 | [laboratorium-06/02-api](laboratorium-06/02-api) | Kontener i karty miast, niezależne żądania HTTP |
 | 6 | [laboratorium-06/03-rozwiazanie](laboratorium-06/03-rozwiazanie) | Rozwiązanie: trzy miasta i czas wysłania zapytania |
+| 7 | [laboratorium-07/01-start](laboratorium-07/01-start) | Punkt wyjścia z lab. 6, do samodzielnego dodania routingu |
+| 7 | [laboratorium-07/02-routing](laboratorium-07/02-routing) | Routing, sesja demo, guard funkcyjny i wylogowanie |
+| 7 | [laboratorium-07/03-rozwiazanie](laboratorium-07/03-rozwiazanie) | Rozwiązanie: publiczne /about i guestGuard przy /login |
 
 ## Uruchomienie
 
@@ -28,10 +31,10 @@ Każdy projekt wymaga osobnej instalacji zależności. Uruchamiaj jeden projekt
 na porcie 4200. Projekty są kompletne; nie wykonuj ponownie `ng new`.
 Globalna instalacja Angular CLI nie jest potrzebna.
 
-Przykład dla laboratorium 6, po wejściu do głównego katalogu repozytorium:
+Przykład dla laboratorium 7, po wejściu do głównego katalogu repozytorium:
 
 ```sh
-cd laboratorium-06/02-api
+cd laboratorium-07/02-routing
 npm ci
 npm start
 ```
@@ -57,9 +60,30 @@ Po własnej próbie porównaj `03-rozwiazanie`.
 
 Wersje sprawdzone 09.11.2026: Angular 22.2.5 i Angular CLI 22.2.6.
 
+## Laboratorium 7 - routing aplikacji
+
+Szczegółowy opis: [laboratorium-07/README.md](laboratorium-07/README.md).
+
+Rozpocznij od `laboratorium-07/01-start`, dodając kod według PDF.
+Gotowy przykład `02-routing` zawiera `provideRouter`, `RouterOutlet`,
+`RouterLink`, lazy loading przez `loadComponent` oraz funkcyjny `CanActivateFn`.
+Obsługuje `/weather`, `/login`, przekierowanie z `/` i widok 404.
+
+Sesja demonstracyjna zapisuje wyłącznie lokalny znacznik trybu demo.
+Przy odświeżeniu stan jest odtwarzany, a wylogowanie usuwa własny wpis.
+Guard steruje nawigacją; rzeczywiste uprawnienia do API sprawdza serwer.
+
+Zadania: publiczny widok `/about` i `guestGuard`, który przekierowuje
+aktywną sesję z `/login` do `/weather`. Po własnej próbie porównaj
+`03-rozwiazanie`.
+
+Wersje sprawdzone 16.11.2026: Angular 22.2.6, Angular CLI 22.2.7,
+Bootstrap 5.3.9. Wszystkie komponenty są standalone.
+
 ## Środowisko i kontrola
 
-Node.js 24 LTS >=24.15.0, TypeScript 6.0.3, RxJS 7.8.2, Bootstrap 5.3.8.
+Node.js 24 LTS >=24.15.0, TypeScript 6.0.3, RxJS 7.8.2.
+Bootstrap: laboratoria 5 i 6 - 5.3.8; laboratorium 7 - 5.3.9.
 `package-lock.json` zachowuje dokładne wersje; instaluj przez `npm ci`.
 
 ```sh
@@ -68,6 +92,8 @@ npm test -- --watch=false
 ```
 
 W `02-api` laboratorium 5 jest 6 testów, a w `laboratorium-06/02-api` 10 testów.
+W laboratorium 7 testy przechodzą dla `01-start` (10), `02-routing` (21)
+i `03-rozwiazanie` (24); wszystkie trzy projekty mają poprawny build produkcyjny.
 Testy HTTP używają backendu testowego i nie wymagają połączenia z API.
 Zachowanie w przeglądarce sprawdź dodatkowo: pobieranie, blokadę przycisku,
 błąd sieci i ponowienie. Nie uruchamiaj komponentów przez `node plik.ts`.
@@ -82,8 +108,10 @@ Informacja o źródle i licencji CC BY 4.0 znajduje się w szablonach.
 - [Komponenty Angular](https://angular.dev/guide/components)
 - [Wejścia input()](https://angular.dev/guide/components/inputs)
 - [Zdarzenia output()](https://angular.dev/guide/components/outputs)
+- [Routing i guardy](https://angular.dev/guide/routing)
 - [Zgodność wersji](https://angular.dev/reference/versions)
 
 ## Licencja
 
 Kod udostępniono na licencji [MIT](LICENSE).
+
